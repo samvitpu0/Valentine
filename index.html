@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine?</title>
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffebf0;
+      font-family: Arial, sans-serif;
+      user-select: none;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+     .buttons {
+      position: relative;
+      width: 360px;
+      height: 140px;
+      margin: auto;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      position: absolute;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+      left: 20px;
+      top: 45px;
+    }
+
+    #no {
+      background: #cfcfcf;
+      left: 220px;
+      top: 45px;
+      transition: left 0.35s cubic-bezier(.17,.67,.32,1.35),
+                  top 0.35s cubic-bezier(.17,.67,.32,1.35);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Will you be my Valentine? ❤️</h1>
+
+    <div class="buttons">
+      <button id="yes" onclick="goYes()">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const container = document.querySelector(".buttons");
+    var padding = 10;
+    function moveNoButton() {
+      const maxX = container.clientWidth - noBtn.offsetWidth - padding;
+      const maxY = container.clientHeight - noBtn.offsetHeight - padding;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    }
+
+    // Move as soon as cursor gets close
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("mousedown", moveNoButton);
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+    // Block clicks completely
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    function goYes() {
+      window.location.href = "yes.html";
+    }
+  </script>
+
+</body>
+</html>
